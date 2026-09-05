@@ -222,7 +222,7 @@
       oklch(0.22 0.04 262) 108px 176px,
       transparent 176px 196px
     );
-  mask-image: linear-gradient(to top, black 42%, transparent 100%);
+  mask-image: linear-gradient(to top, black 60%, transparent 100%);
   filter: blur(0.4px);
   opacity: 0.65;
 }
@@ -244,8 +244,8 @@
       color-mix(in oklab, var(--gold) 22%, transparent) 10px 13px,
       transparent 13px 30px
     );
-  mask-image: linear-gradient(to top, black 55%, transparent 100%);
-  opacity: 0.85;
+  mask-image: linear-gradient(to top, black 72%, transparent 100%);
+  opacity: 0.95;
 }
 
 @utility city-fog {

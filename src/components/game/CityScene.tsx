@@ -37,7 +37,7 @@ export function CityScene({ onExit }: { onExit: () => void }) {
   const playerRef = useRef<HTMLDivElement>(null);
   const webRef = useRef<HTMLDivElement>(null);
 
-  const pos = useRef<Pos>({ x: cityLocations[0]!.x, depth: 0.05 });
+  const pos = useRef<Pos>({ x: cityLocations[0]!.x + 150, depth: 0.05 });
   const keys = useRef<Set<string>>(new Set());
   const travel = useRef<{ from: Pos; to: Pos; start: number; id: LocationId } | null>(null);
   const combo = useRef("");
@@ -67,9 +67,9 @@ export function CityScene({ onExit }: { onExit: () => void }) {
   const webTravel = useCallback(
     (id: LocationId) => {
       const loc = cityLocations.find((l) => l.id === id)!;
-      const target = { x: loc.x, depth: Math.min(loc.depth, MAX_DEPTH) };
+      const target = { x: loc.x + 140, depth: Math.min(loc.depth, MAX_DEPTH) };
       const dist = Math.abs(target.x - pos.current.x);
-      if (dist < 40) {
+      if (dist < 60) {
         enter(id);
         return;
       }
@@ -210,12 +210,12 @@ export function CityScene({ onExit }: { onExit: () => void }) {
         {/* distant skyline (barely moves) */}
         <div ref={skyRef} className="pointer-events-none absolute inset-0 will-change-transform" aria-hidden>
           <div className="stars absolute inset-0 opacity-70" />
-          <div className="skyline-far absolute inset-x-0 bottom-[26%] h-[38%] w-[200%]" />
+          <div className="skyline-far absolute inset-x-0 bottom-[24%] h-[26%] w-[200%]" />
         </div>
 
         {/* mid skyline */}
         <div ref={farRef} className="pointer-events-none absolute inset-0 will-change-transform" aria-hidden>
-          <div className="skyline-mid absolute inset-x-0 bottom-[20%] h-[34%] w-[200%]" />
+          <div className="skyline-mid absolute inset-x-0 bottom-[17%] h-[22%] w-[200%]" />
         </div>
 
         {/* atmospheric fog band */}
@@ -257,7 +257,7 @@ export function CityScene({ onExit }: { onExit: () => void }) {
                 className="group absolute origin-bottom transition-[filter] duration-300"
                 style={{
                   left: l.x,
-                  bottom: depthOffset(l.depth) + sceneH * 0.05,
+                  bottom: depthOffset(l.depth) + sceneH * 0.07,
                   transform: `translateX(-50%) scale(${s})`,
                   zIndex: 400 - Math.round(l.depth * 400),
                   filter: `brightness(${active ? 1.15 : 1 - l.depth * 0.35}) saturate(${1 - l.depth * 0.3})`,
@@ -280,7 +280,7 @@ export function CityScene({ onExit }: { onExit: () => void }) {
           {/* player */}
           <div
             ref={playerRef}
-            className="absolute bottom-[8%] left-0 h-24 w-16 origin-bottom will-change-transform sm:h-32 sm:w-20"
+            className="absolute bottom-[7%] left-0 h-20 w-14 origin-bottom will-change-transform sm:h-28 sm:w-[4.5rem]"
           >
             <div className="hero-shadow absolute -bottom-2 left-1/2 h-2.5 w-12 -translate-x-1/2 rounded-full" aria-hidden />
             <div className={state === "idle" ? "hero-idle h-full w-full" : "h-full w-full"}>
