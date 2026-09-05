@@ -228,8 +228,8 @@ export function CityScene({ onExit }: { onExit: () => void }) {
       <Dialog open={!!open} onOpenChange={(v) => !v && setOpen(null)}>
         <DialogContent className="max-h-[85vh] max-w-3xl overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-display tracking-[0.2em]">
-              {cityLocations.find((l) => l.id === open)?.name.toUpperCase()}
+            <DialogTitle className="sr-only">
+              {cityLocations.find((l) => l.id === open)?.name}
             </DialogTitle>
           </DialogHeader>
           {open && <LocationPanel id={open} />}
