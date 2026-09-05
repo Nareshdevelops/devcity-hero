@@ -107,22 +107,33 @@ export function CityScene({ onExit }: { onExit: () => void }) {
           <div className="web-grid absolute inset-0 opacity-30" aria-hidden />
           {/* skyline layers */}
           <div
-            className="absolute inset-x-0 bottom-0 h-2/3 opacity-50"
+            className="absolute inset-x-0 bottom-0 h-1/2 opacity-40"
             aria-hidden
             style={{
               background:
-                "repeating-linear-gradient(90deg, transparent 0 32px, oklch(0.17 0.03 264) 32px 96px)",
-              maskImage: "linear-gradient(to top, black 25%, transparent)",
+                "repeating-linear-gradient(90deg, transparent 0 32px, oklch(0.19 0.03 264) 32px 96px)",
+              maskImage: "linear-gradient(to top, black 20%, transparent)",
             }}
           />
           <div
-            className="absolute inset-x-0 bottom-0 h-1/2"
+            className="absolute inset-x-0 bottom-0 h-[22%]"
             aria-hidden
             style={{
               background:
-                "repeating-linear-gradient(90deg, oklch(0.13 0.025 264) 0 54px, transparent 54px 92px)",
+                "repeating-linear-gradient(90deg, oklch(0.14 0.025 264) 0 54px, transparent 54px 92px)",
+              maskImage: "linear-gradient(to top, black 55%, transparent)",
             }}
           />
+          <div
+            className="absolute inset-x-0 bottom-0 h-[18%] opacity-70"
+            aria-hidden
+            style={{
+              background:
+                "repeating-linear-gradient(90deg, transparent 0 8px, color-mix(in oklab, var(--gold) 30%, transparent) 8px 11px, transparent 11px 24px)",
+              maskImage: "linear-gradient(to top, black 10%, transparent 70%)",
+            }}
+          />
+
 
           {/* location markers */}
           {cityLocations.map((l) => {
