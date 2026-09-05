@@ -198,3 +198,192 @@
     scroll-behavior: auto;
   }
 }
+
+/* ------------------------- 2.5D city world layers ------------------------ */
+
+@utility stars {
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, oklch(0.95 0.02 250 / 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 34% 9%, oklch(0.9 0.02 250 / 0.5) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 58% 22%, oklch(0.95 0.02 250 / 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 77% 12%, oklch(0.9 0.02 250 / 0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 91% 26%, oklch(0.95 0.02 250 / 0.45) 50%, transparent 51%);
+  background-size: 100% 100%;
+}
+
+@utility skyline-far {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      oklch(0.21 0.035 268) 0 46px,
+      transparent 46px 58px,
+      oklch(0.2 0.035 272) 58px 92px,
+      transparent 92px 108px,
+      oklch(0.22 0.04 262) 108px 176px,
+      transparent 176px 196px
+    );
+  mask-image: linear-gradient(to top, black 60%, transparent 100%);
+  filter: blur(0.4px);
+  opacity: 0.65;
+}
+
+@utility skyline-mid {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      oklch(0.17 0.03 266) 0 68px,
+      transparent 68px 84px,
+      oklch(0.15 0.028 270) 84px 138px,
+      transparent 138px 152px,
+      oklch(0.18 0.032 260) 152px 246px,
+      transparent 246px 268px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 10px,
+      color-mix(in oklab, var(--gold) 22%, transparent) 10px 13px,
+      transparent 13px 30px
+    );
+  mask-image: linear-gradient(to top, black 72%, transparent 100%);
+  opacity: 0.95;
+}
+
+@utility city-fog {
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--signal) 12%, transparent),
+    transparent 80%
+  );
+  filter: blur(6px);
+}
+
+@utility city-haze {
+  background:
+    radial-gradient(120% 60% at 50% 100%, color-mix(in oklab, var(--primary) 14%, transparent), transparent 70%),
+    radial-gradient(80% 50% at 20% 10%, color-mix(in oklab, var(--signal) 10%, transparent), transparent 70%);
+}
+
+@utility vignette {
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, oklch(0.08 0.02 264 / 0.75) 100%);
+}
+
+@utility street {
+  background:
+    linear-gradient(to top, oklch(0.12 0.02 264) 0%, oklch(0.16 0.025 264) 100%);
+  border-top: 1px solid color-mix(in oklab, var(--signal) 25%, transparent);
+  box-shadow: 0 -14px 40px -10px color-mix(in oklab, var(--signal) 22%, transparent);
+}
+
+@utility street-far {
+  background: linear-gradient(to top, oklch(0.14 0.022 264), transparent);
+  border-top: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  opacity: 0.7;
+}
+
+@utility fg-rooftops {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      oklch(0.09 0.02 264) 0 180px,
+      transparent 180px 420px,
+      oklch(0.08 0.018 264) 420px 640px,
+      transparent 640px 980px
+    );
+  mask-image: linear-gradient(to top, black 60%, transparent);
+  opacity: 0.9;
+}
+
+@utility particles {
+  background-image:
+    radial-gradient(2px 2px at 10% 60%, color-mix(in oklab, var(--signal) 55%, transparent) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 42% 40%, color-mix(in oklab, var(--gold) 45%, transparent) 50%, transparent 51%),
+    radial-gradient(2px 2px at 68% 72%, color-mix(in oklab, var(--signal) 40%, transparent) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 88% 50%, color-mix(in oklab, var(--primary) 45%, transparent) 50%, transparent 51%);
+  animation: drift 14s linear infinite;
+  opacity: 0.55;
+}
+
+@utility hero-shadow {
+  background: radial-gradient(closest-side, oklch(0.05 0.01 264 / 0.7), transparent);
+  filter: blur(2px);
+}
+
+@utility web-line {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--signal) 90%, transparent), transparent);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--signal) 60%, transparent);
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-60px, -30px, 0); }
+}
+
+@keyframes window-flicker {
+  0%, 92%, 100% { opacity: 0.75; }
+  94% { opacity: 0.2; }
+  97% { opacity: 0.85; }
+}
+
+@keyframes beacon-pulse {
+  0%, 100% { opacity: 1; r: 3; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-3px) scaleY(1.012); }
+}
+
+@keyframes limb-swing-a {
+  0%, 100% { transform: rotate(-16deg); }
+  50% { transform: rotate(16deg); }
+}
+
+@keyframes limb-swing-b {
+  0%, 100% { transform: rotate(16deg); }
+  50% { transform: rotate(-16deg); }
+}
+
+@keyframes lens-blink {
+  0%, 96%, 100% { opacity: 1; }
+  98% { opacity: 0.35; }
+}
+
+.city-window {
+  animation: window-flicker 9s ease-in-out infinite;
+}
+
+.beacon {
+  animation: beacon-pulse 1.8s ease-in-out infinite;
+}
+
+.hero-idle {
+  animation: hero-bob 2.6s ease-in-out infinite;
+}
+
+.hero-lens {
+  animation: lens-blink 7s ease-in-out infinite;
+}
+
+.hero-leg-front,
+.hero-arm-back {
+  transform-origin: 30px 50px;
+  animation: limb-swing-a 0.42s ease-in-out infinite;
+}
+
+.hero-leg-back,
+.hero-arm-front {
+  transform-origin: 30px 50px;
+  animation: limb-swing-b 0.42s ease-in-out infinite;
+}
+
+@utility plaza {
+  background:
+    linear-gradient(to top, oklch(0.13 0.02 264) 0%, oklch(0.16 0.026 264) 70%, transparent 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 118px,
+      color-mix(in oklab, var(--signal) 10%, transparent) 118px 120px
+    );
+  opacity: 0.85;
+}
