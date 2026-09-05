@@ -239,6 +239,11 @@ export function CityScene({ onExit }: { onExit: () => void }) {
             aria-hidden
           />
           <div
+            className="plaza absolute left-0 w-full"
+            style={{ bottom: 0, height: depthOffset(MAX_DEPTH) + 40 }}
+            aria-hidden
+          />
+          <div
             className="street-far absolute left-0 h-[8%] w-full"
             style={{ bottom: depthOffset(MAX_DEPTH) }}
             aria-hidden

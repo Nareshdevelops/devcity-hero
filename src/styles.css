@@ -376,3 +376,14 @@
   transform-origin: 30px 50px;
   animation: limb-swing-b 0.42s ease-in-out infinite;
 }
+
+@utility plaza {
+  background:
+    linear-gradient(to top, oklch(0.13 0.02 264) 0%, oklch(0.16 0.026 264) 70%, transparent 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 118px,
+      color-mix(in oklab, var(--signal) 10%, transparent) 118px 120px
+    );
+  opacity: 0.85;
+}
