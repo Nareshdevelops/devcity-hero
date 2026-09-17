@@ -393,26 +393,122 @@ export function ResumeBlock() {
 /* ------------------------------ CONTACT --------------------------------- */
 
 export function ContactBlock() {
+  const email = socialLinks.find(
+    (l) => l.id === "email"
+  );
+
+  const otherLinks = socialLinks.filter(
+    (l) => l.id !== "email"
+  );
+
+  const copyEmail = async () => {
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(
+        email.handle
+      );
+    } catch {
+      // Clipboard access may be unavailable in some browsers.
+    }
+  };
+
   return (
     <div>
-      <SectionHeading kicker="Communication HQ" title="Contact" />
-      <div className="grid gap-3 sm:grid-cols-2">
-        {socialLinks.map((l) => (
+      <SectionHeading
+        kicker="Communication HQ"
+        title="Contact & Network"
+      />
+
+      <Panel>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-display text-lg">
+              Open Communication Channel
+            </p>
+
+            <p className="mt-1 text-sm text-muted-foreground">
+              Connect through the professional channels
+              configured in the portfolio.
+            </p>
+          </div>
+
+          {email && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={copyEmail}
+            >
+              Copy Email
+            </Button>
+          )}
+        </div>
+
+        {email && (
           <a
-            key={l.id}
-            href={l.url}
-            target={l.url.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
-            className="hud-panel flex items-center justify-between rounded-lg p-4 transition-colors hover:border-signal"
+            href={email.url}
+            className="mt-5 flex items-center justify-between rounded-lg border border-signal/30 bg-surface-2 p-4 transition-colors hover:border-signal"
           >
             <span>
-              <span className="block font-display text-sm">{l.label}</span>
-              <span className="block break-all text-xs text-muted-foreground">{l.handle}</span>
+              <span className="block font-display text-sm">
+                {email.label}
+              </span>
+
+              <span className="block break-all text-xs text-muted-foreground">
+                {email.handle}
+              </span>
             </span>
-            <ExternalLink className="size-4 shrink-0 text-signal" aria-hidden />
+
+            <ExternalLink
+              className="size-4 shrink-0 text-signal"
+              aria-hidden
+            />
           </a>
-        ))}
-      </div>
+        )}
+
+        {otherLinks.length > 0 && (
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {otherLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                target={
+                  link.url.startsWith("http")
+                    ? "_blank"
+                    : undefined
+                }
+                rel={
+                  link.url.startsWith("http")
+                    ? "noreferrer"
+                    : undefined
+                }
+                className="hud-panel flex items-center justify-between rounded-lg p-4 transition-colors hover:border-signal"
+              >
+                <span>
+                  <span className="block font-display text-sm">
+                    {link.label}
+                  </span>
+
+                  <span className="block break-all text-xs text-muted-foreground">
+                    {link.handle}
+                  </span>
+                </span>
+
+                <ExternalLink
+                  className="size-4 shrink-0 text-signal"
+                  aria-hidden
+                />
+              </a>
+            ))}
+          </div>
+        )}
+      </Panel>
+
+      <p className="mt-3 text-xs text-muted-foreground">
+        Only configured links are displayed. Add a real
+        profile URL to the central portfolio data to make
+        it appear here automatically.
+      </p>
     </div>
   );
 }
